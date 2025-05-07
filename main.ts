@@ -413,6 +413,10 @@ router.post("/v1/chat/completions", async (ctx) => {
   const currentTokenIndex = tokens.length > 0 ? (TOKEN_INDEX - 1) % tokens.length : 0;
   
   try {
+    // 打印请求头和请求体用于调试
+    console.log('Request Headers:', headers);
+    console.log('Request Payload:', payload);
+    
     // Send request to DeepSider API
     const response = await fetch(
       `${DEEPSIDER_API_BASE}/chat/conversation`,
@@ -521,12 +525,12 @@ router.get("/admin/balance", async (ctx) => {
   }
   
   // Get API key from docker environment if exists
-  const envApiKey = Deno.env.get("CHAT_AUTHORIZATION");
-  console.log("envApiKey:", envApiKey);
-  let tokens: string[] = [];
-  if (envApiKey) {
-  tokens = envApiKey.split(',').map(t => t.trim()).filter(t => t.length > 0);
-  } else {
+  // const envApiKey = Deno.env.get("CHAT_AUTHORIZATION");
+  // console.log("envApiKey:", envApiKey);
+  // let tokens: string[] = [];
+  // if (envApiKey) {
+  // tokens = envApiKey.split(',').map(t => t.trim()).filter(t => t.length > 0);
+  // } else {
     // Get API key from headers
     const authHeader = ctx.request.headers.get("Authorization");
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -535,8 +539,8 @@ router.get("/admin/balance", async (ctx) => {
       return;
     } 
     const apiKey = authHeader.replace("Bearer ", "");
-    tokens = apiKey.split(',').map(t => t.trim()).filter(t => t.length > 0);
-  }
+    tokens = apiKey.split(',');
+  // }
   
   const result: Record<string, any> = {};
   
