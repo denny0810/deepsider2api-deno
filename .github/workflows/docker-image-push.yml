@@ -6,8 +6,8 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Tag Name(latest)'
-        required: false
+        description: 'Tag Name'
+        required: true
 
 jobs:
   build-and-push:
