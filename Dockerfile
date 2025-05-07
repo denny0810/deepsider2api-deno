@@ -14,4 +14,4 @@ RUN deno cache main.ts
 EXPOSE 7860
 
 # 启动应用
-CMD ["deno", "run", "--allow-net", "--allow-env", "main.ts"]
+CMD ["deno", "run", "--allow-net", "--allow-env", "--allow-read=.env", "main.ts"]
