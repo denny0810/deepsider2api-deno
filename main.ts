@@ -105,7 +105,8 @@ function getHeaders(apiKey: string): Record<string, string> {
     "content-type": "application/json",
     "origin": "chrome-extension://client",
     "i-lang": "zh-CN",
-    "i-version": "1.1.64",
+    // version of the extension 
+    "i-version": "1.5.8",
     "sec-ch-ua": '"Chromium";v="134", "Not:A-Brand";v="24"',
     "sec-ch-ua-mobile": "?0",
     "sec-ch-ua-platform": "Windows",
@@ -118,6 +119,7 @@ function getHeaders(apiKey: string): Record<string, string> {
 }
 
 function verifyApiKey(ctx: Context): string | null {
+  console.log("apiKey for verify:", ctx);
   const authHeader = ctx.request.headers.get("Authorization");
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     ctx.response.status = 401;
@@ -520,6 +522,7 @@ router.get("/admin/balance", async (ctx) => {
   
   // Get API key from docker environment if exists
   const envApiKey = Deno.env.get("CHAT_AUTHORIZATION");
+  console.log("envApiKey:", envApiKey);
   let tokens: string[] = [];
   if (envApiKey) {
   tokens = envApiKey.split(',').map(t => t.trim()).filter(t => t.length > 0);
@@ -532,7 +535,7 @@ router.get("/admin/balance", async (ctx) => {
       return;
     } 
     const apiKey = authHeader.replace("Bearer ", "");
-    tokens = apiKey.envApiKey.split(',').map(t => t.trim()).filter(t => t.length > 0);
+    tokens = apiKey.split(',').map(t => t.trim()).filter(t => t.length > 0);
   }
   
   const result: Record<string, any> = {};
