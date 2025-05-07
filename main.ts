@@ -511,16 +511,22 @@ router.get("/admin/balance", async (ctx) => {
     return;
   }
   
-  // Get API key from headers
-  const authHeader = ctx.request.headers.get("Authorization");
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    ctx.response.status = 401;
-    ctx.response.body = { detail: "Missing or invalid Authorization header" };
-    return;
+  // Get API key from docker environment if exists
+  const envApiKey = Deno.env.get("CHAT_AUTHORIZATION");
+  let tokens: string[] = [];
+  if (envApiKey) {
+  tokens = envApiKey.split(',').map(t => t.trim()).filter(t => t.length > 0);
+  } else {
+    // Get API key from headers
+    const authHeader = ctx.request.headers.get("Authorization");
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      ctx.response.status = 401;
+      ctx.response.body = { detail: "Missing or invalid Authorization header" };
+      return;
+    } 
+    const apiKey = authHeader.replace("Bearer ", "");
+    tokens = apiKey.envApiKey.split(',').map(t => t.trim()).filter(t => t.length > 0);
   }
-  
-  const apiKey = authHeader.replace("Bearer ", "");
-  const tokens = apiKey.split(',');
   
   const result: Record<string, any> = {};
   
