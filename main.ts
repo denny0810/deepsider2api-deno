@@ -37,22 +37,29 @@ let TOKEN_INDEX = 0;
 
 // Model mapping table
 const MODEL_MAPPING: Record<string, string> = {
-  "gpt-4o-mini": "openai/gpt-4o-mini",
-  "gpt-4o": "openai/gpt-4o",
-  "gpt-4o-image": "openai/gpt-4o-image",
+  "DeepSeek R1 671B": "deepseek/deepseek-r1",
+  "DeepSeek V3 0324": "deepseek/deepseek-chat-v3-0324",
+  "DeepSeek V3": "deepseek/deepseek-chat",
+  "Qwen3 235B A22B": "qwen/qwen3-235b-a22b",
+  "Qwen3 32B": "qwen/qwen3-32b",
+  "QwQ 32B": "qwen/qwq-32b",
+  "GPT-4o-Image": "openai/gpt-4o-image",
+  "GPT-4.1 Nano": "openai/gpt-4.1-nano",
+  "GPT-4.1 Mini": "openai/gpt-4.1-mini",
+  "GPT-4.1": "openai/gpt-4.1",
+  "GPT-4o": "openai/gpt-4o",
+  "GPT-4o mini": "openai/gpt-4o-mini",
   "o1": "openai/o1",
-  "o3-mini": "oopenai/o3-mini",
-  "claude-3.5-sonnet": "anthropic/claude-3.5-sonnet",
-  "claude-3.7-sonnet": "anthropic/claude-3.7-sonnet",
-  "grok-3": "x-ai/grok-3",
-  "grok-3-reasoner":"x-ai/grok-3-reasoner",
-  "deepseek-v3":"deepseek/deepseek-chat",
-  "deepseek-r1":"deepseek/deepseek-r1",
-  "gemini-2.0-flash":"google/gemini-2.0-flash",
-  "gemini-2.0-pro-exp":"google/gemini-2.0-pro-exp-02-05",
-  "gemini-2.0-flash-thinking-exp":"google/gemini-2.0-flash-thinking-exp-1219",
-  "qwq-32b":"qwen/qwq-32b",
-  "qwen-max":"qwen/qwen-max"
+  "o3 mini": "openai/o3-mini",
+  "Grok 3": "x-ai/grok-3",
+  "Grok 3 Reasoner": "x-ai/grok-3-reasoner",
+  "Gemini 2.0 Flash": "google/gemini-2.0-flash",
+  "Gemini 2.5 Pro Exp": "google/gemini-2.5-pro-exp",
+  "Claude 3.5 Sonnet": "anthropic/claude-3.5-sonnet",
+  "Claude 3.7 Sonnet": "anthropic/claude-3.7-sonnet",
+  "Qwen Max": "qwen/qwen-max",
+  "Llama 4 Maverick": "meta-llama/llama-4-maverick",
+  "Llama 4 Scout": "meta-llama/llama-4-scout"
 };
 
 // TypeScript interfaces
